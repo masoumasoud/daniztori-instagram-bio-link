@@ -69,7 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const finalScore = document.getElementById('finalScore');
     const restartBtn = document.getElementById('restartBtn');
     const playBtn = document.getElementById('playBtn');
-    const exitGameBtn = document.getElementById('exitGameBtn');
+    const exitGameBtn1 = document.getElementById('exitGameBtn1');
+    const exitGameBtn2 = document.getElementById('exitGameBtn2');
     const leftBtn = document.getElementById('leftBtn');
     const rightBtn = document.getElementById('rightBtn');
 
@@ -85,6 +86,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setRPM(0);
 
+    let idleInterval;
+    let isHovering = false;
+
+    function startIdleSpeed() {
+        idleInterval = setInterval(() => {
+            if (!isHovering && !isGameActive) {
+                let idleSpeed = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
+                speedValue.textContent = idleSpeed;
+                setRPM((idleSpeed / 300) * 100);
+            }
+        }, 800);
+    }
+    startIdleSpeed();
+
     // Mobile optimized touches on links
     switchBtns.forEach(btn => {
         btn.addEventListener('touchstart', () => {
@@ -94,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btn.addEventListener('mouseenter', () => {
             if(isGameActive) return;
+            isHovering = true;
             playRevSound();
             const targetSpeed = btn.getAttribute('data-rpm');
             const targetGear = btn.getAttribute('data-gear');
@@ -107,10 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btn.addEventListener('mouseleave', () => {
             if(isGameActive) return;
-            speedValue.textContent = '0';
+            isHovering = false;
+            let idleSpeed = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
+            speedValue.textContent = idleSpeed;
             gearValue.textContent = 'N';
             gearValue.style.color = '#0f0';
-            setRPM(0);
+            setRPM((idleSpeed / 300) * 100);
         });
     });
 
@@ -281,6 +299,9 @@ document.addEventListener('DOMContentLoaded', () => {
         isGameOver = true;
         cancelAnimationFrame(gameLoop);
         gameDisplay.classList.remove('active');
+        let idleSpeed = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
+        speedValue.textContent = idleSpeed;
+        setRPM((idleSpeed / 300) * 100);
     }
 
     // Interactions
@@ -305,7 +326,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    exitGameBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); closeGameMode(); });
+    exitGameBtn1.addEventListener('pointerdown', (e) => { e.preventDefault(); closeGameMode(); });
+    exitGameBtn2.addEventListener('pointerdown', (e) => { e.preventDefault(); closeGameMode(); });
     playBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startGame(); });
     restartBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startGame(); });
 
