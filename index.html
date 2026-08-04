@@ -35,7 +35,7 @@
         
         <!-- Header Profile -->
         <header class="profile-header">
-            <h1 class="profile-title">دنیزطوری <i class="fa-solid fa-motorcycle accent-icon"></i></h1>
+            <h1 class="profile-title" style="font-family: var(--font-text);">DanizTori <i class="fa-solid fa-motorcycle accent-icon"></i></h1>
             <p class="profile-bio">زندگی روی دو چرخ. مرزها رو بشکن و گاز بده!</p>
         </header>
 
@@ -91,14 +91,20 @@
 
             <!-- Game Overlay (Hidden by default, shown inside speedometer area) -->
             <div class="game-display" id="gameDisplay">
-                <canvas id="gameCanvas" width="300" height="200"></canvas>
+                <canvas id="gameCanvas" width="300" height="300"></canvas>
+                <button id="exitGameBtn" class="exit-game" title="خروج"><i class="fa-solid fa-times"></i></button>
+                <div class="game-controls-ui" id="gameControlsUI">
+                    <button id="leftBtn" class="game-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="rightBtn" class="game-btn"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
                 <div class="game-overlay-ui" id="gameOverUI">
                     <h3>تصادف کردی!</h3>
                     <p>امتیاز: <span id="finalScore">0</span></p>
                     <button id="restartBtn">دوباره</button>
                 </div>
                 <div class="game-start-ui" id="gameStartUI">
-                    <p>برای پرش بزن رو صفحه!</p>
+                    <p>با دکمه‌های چپ و راست جاخالی بده!</p>
+                    <button id="playBtn">شروع بازی</button>
                 </div>
             </div>
         </section>
