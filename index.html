@@ -1,28 +1,20 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" data-theme="dark">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanizTori | لینک‌های بیو اینستاگرام</title>
+    <title>DanizTori | Biker Life</title>
     
     <!-- Meta SEO & Social Sharing -->
-    <meta name="description" content="صفحه رسمی لینک‌های بیو اینستاگرام دنیزطوری | DanizTori Bio Link Hub - دسترسی به کانال‌ها، محصولات و شبکه‌های اجتماعی">
-    <meta name="keywords" content="DanizTori, دنیزطوری, اینستاگرام, bio link, لینک بیو, یوتیوب, تلگرام">
-    <meta name="author" content="DanizTori">
-    
-    <!-- Open Graph / Facebook / Instagram -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="DanizTori | Bio Link Hub">
-    <meta property="og:description" content="خوش آمدید! تمام لینک‌های ارتباطی و کانال‌های رسمی DanizTori در یک جا">
-    <meta property="og:image" content="assets/avatar.png">
+    <meta name="description" content="DanizTori Biker Blog & Social Links">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/avatar.png">
+    <link rel="icon" type="image/png" href="assets/biker_avatar.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&family=Teko:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -32,220 +24,100 @@
 </head>
 <body>
 
-    <!-- Background Ambient Animated Orbs -->
-    <div class="ambient-background">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
+    <!-- Background texture/pattern (minimal) -->
+    <div class="tire-track-bg"></div>
 
-    <!-- Header Actions Bar -->
-    <nav class="top-nav">
-        <div class="theme-switcher">
-            <button id="themeToggleBtn" aria-label="تغییر تم" title="تغییر تم دیداری">
-                <i class="fa-solid me-1 fa-moon" id="themeIcon"></i>
-                <span id="themeLabel">تم تاریک</span>
-            </button>
-        </div>
-        <div class="nav-right-actions">
-            <button id="qrCodeBtn" class="icon-btn" aria-label="کد QR" title="نمایش کد QR">
-                <i class="fa-solid fa-qrcode"></i>
-            </button>
-            <button id="shareProfileBtn" class="icon-btn" aria-label="اشتراک‌گذاری" title="کپی لینک صفحه">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Main Container -->
     <main class="container">
         
         <!-- Profile Header Section -->
         <header class="profile-header">
-            <div class="avatar-wrapper">
-                <div class="avatar-glow"></div>
-                <img src="assets/avatar.png" alt="DanizTori Avatar" class="avatar-img" id="avatarImg">
-                <span class="online-badge" title="آنلاین"></span>
+            <div class="avatar-wrapper" id="avatarWrapper">
+                <div class="rpm-ring"></div>
+                <img src="assets/biker_avatar.png" alt="DanizTori Avatar" class="avatar-img" id="avatarImg">
+                <button class="ignition-btn" id="ignitionBtn" title="Start Engine" aria-label="Start Engine">
+                    <i class="fa-solid fa-power-off"></i>
+                </button>
             </div>
             
             <h1 class="profile-title">
-                DanizTori | دنیز طوری 
-                <span class="verified-badge" title="تایید شده"><i class="fa-solid fa-circle-check"></i></span>
+                DanizTori <span class="accent-dot">.</span>
             </h1>
             
-            <p class="profile-tagline">✨ Digital Content Creator & Lifestyle Design</p>
+            <p class="profile-tagline">RIDE <span class="separator">|</span> LIVE <span class="separator">|</span> CREATE</p>
             <p class="profile-bio">
-                خوش آمدید! 🌸 در اینجا می‌تونید به تمام ویدیوها، کانال‌ها و محصولات اختصاصی دنیزطوری دسترسی داشته باشید.
+                Life on two wheels. 🏍️ Join the ride on my channels.
             </p>
-
-            <div class="profile-tags">
-                <span class="tag"><i class="fa-solid fa-location-dot"></i> تهران / آنلاین</span>
-                <span class="tag"><i class="fa-solid fa-sparkles"></i> تولید محتوا</span>
-                <span class="tag"><i class="fa-solid fa-heart"></i> +50K همراه‌کننده</span>
-            </div>
         </header>
-
-        <!-- Social Media Links Row -->
-        <section class="social-bar">
-            <a href="https://instagram.com" target="_blank" class="social-icon insta" title="اینستاگرام">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://t.me" target="_blank" class="social-icon telegram" title="تلگرام">
-                <i class="fa-brands fa-telegram"></i>
-            </a>
-            <a href="https://youtube.com" target="_blank" class="social-icon youtube" title="یوتیوب">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="https://wa.me" target="_blank" class="social-icon whatsapp" title="واتساپ">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="mailto:masoumasoud@gmail.com" class="social-icon email" title="ایمیل">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
-            <a href="https://pinterest.com" target="_blank" class="social-icon pinterest" title="پینترست">
-                <i class="fa-brands fa-pinterest"></i>
-            </a>
-        </section>
-
-        <!-- Highlight Featured Card -->
-        <section class="featured-card-wrapper">
-            <a href="https://youtube.com" target="_blank" class="featured-card">
-                <div class="featured-badge">🔥 جدیدترین محتوا</div>
-                <div class="featured-content">
-                    <div class="featured-text">
-                        <h3>ویدیو جدید در یوتیوب منتشر شد! 🎉</h3>
-                        <p>تکنیک‌ها و ایده‌های خلاقانه برای استایل و سبک زندگی دیجیتال</p>
-                    </div>
-                    <div class="featured-action">
-                        <span>مشاهده ویدیو <i class="fa-solid fa-play"></i></span>
-                    </div>
-                </div>
-            </a>
-        </section>
 
         <!-- Main Links List -->
         <section class="links-container" id="linksList">
             
-            <a href="https://instagram.com" target="_blank" class="link-card highlight-glow" data-id="link-1">
-                <div class="link-icon insta-bg">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-                <div class="link-details">
-                    <span class="link-title">پیج اصلی اینستاگرام (DanizTori)</span>
-                    <span class="link-subtitle">استوری‌های روزانه، پست‌های آموزشی و لایوها</span>
-                </div>
-                <div class="link-arrow">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </div>
-            </a>
-
-            <a href="https://t.me" target="_blank" class="link-card" data-id="link-2">
-                <div class="link-icon telegram-bg">
-                    <i class="fa-brands fa-telegram"></i>
-                </div>
-                <div class="link-details">
-                    <span class="link-title">کانال VIP تلگرام</span>
-                    <span class="link-subtitle">اخبار سریع، فایل‌های هدیه و پادکست‌های اختصاصی</span>
-                </div>
-                <div class="link-arrow">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </div>
-            </a>
-
-            <a href="https://youtube.com" target="_blank" class="link-card" data-id="link-3">
-                <div class="link-icon youtube-bg">
+            <a href="https://www.youtube.com/@Daniztori" target="_blank" class="link-card youtube-card">
+                <div class="link-icon">
                     <i class="fa-brands fa-youtube"></i>
                 </div>
                 <div class="link-details">
-                    <span class="link-title">کانال یوتیوب دنیزطوری</span>
-                    <span class="link-subtitle">ویدیوهای با کیفیت بالا، ولگ و آموزش‌ها</span>
+                    <span class="link-title">YouTube Channel</span>
+                    <span class="link-subtitle">Vlogs, Reviews & Rides</span>
                 </div>
-                <div class="link-arrow">
-                    <i class="fa-solid fa-chevron-left"></i>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-left"></i>
                 </div>
             </a>
 
-            <a href="#" id="shopLink" class="link-card" data-id="link-4">
-                <div class="link-icon shop-bg">
-                    <i class="fa-solid fa-bag-shopping"></i>
+            <a href="https://t.me/daniztori" target="_blank" class="link-card telegram-card">
+                <div class="link-icon">
+                    <i class="fa-brands fa-telegram"></i>
                 </div>
                 <div class="link-details">
-                    <span class="link-title">فروشگاه و محصولات پیشنهادی 🛍️</span>
-                    <span class="link-subtitle">لیست مکمل‌ها، ابزارها و کالاهای محبوب من</span>
+                    <span class="link-title">Telegram Channel</span>
+                    <span class="link-subtitle">Daily Updates & Community</span>
                 </div>
-                <div class="link-arrow">
-                    <i class="fa-solid fa-chevron-left"></i>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-left"></i>
                 </div>
             </a>
 
-            <a href="https://wa.me" target="_blank" class="link-card" data-id="link-5">
-                <div class="link-icon whatsapp-bg">
-                    <i class="fa-solid fa-handshake"></i>
+            <a href="https://t.me/daniztori?direct" target="_blank" class="link-card contact-card">
+                <div class="link-icon">
+                    <i class="fa-solid fa-envelope"></i>
                 </div>
                 <div class="link-details">
-                    <span class="link-title">همکاری تجاری و تبلیغات</span>
-                    <span class="link-subtitle">ارتباط مستقیم با مدیر برنامه جهت اسپانسری</span>
+                    <span class="link-title">Direct Contact</span>
+                    <span class="link-subtitle">Business & Inquiries</span>
                 </div>
-                <div class="link-arrow">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </div>
-            </a>
-
-            <a href="https://spotify.com" target="_blank" class="link-card" data-id="link-6">
-                <div class="link-icon spotify-bg">
-                    <i class="fa-brands fa-spotify"></i>
-                </div>
-                <div class="link-details">
-                    <span class="link-title">پلی‌لیست اختصاصی اسپوتیفای 🎧</span>
-                    <span class="link-subtitle">موزیک‌های مورد علاقه دنیزطوری برای تمرکز و انگیزه</span>
-                </div>
-                <div class="link-arrow">
-                    <i class="fa-solid fa-chevron-left"></i>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-left"></i>
                 </div>
             </a>
 
-        </section>
-
-        <!-- Dynamic Counter Stats -->
-        <section class="stats-bar">
-            <div class="stat-item">
-                <span class="stat-number" id="viewsCounter">14,280</span>
-                <span class="stat-label">بازدید این ماه</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number" id="clicksCounter">9,410</span>
-                <span class="stat-label">کلیک روی لینک‌ها</span>
-            </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>ساخته شده با ❤️ برای <strong>DanizTori</strong></p>
-            <p class="copyright">© 2026 DanizTori. تمامی حقوق محفوظ است.</p>
+            <p class="mechanic-text"><i class="fa-solid fa-wrench"></i> ENGINEERED FOR SPEED</p>
         </footer>
 
     </main>
 
-    <!-- QR Code Modal -->
-    <div class="modal-overlay" id="qrModal">
-        <div class="modal-card">
-            <button class="close-modal-btn" id="closeQrModal">&times;</button>
-            <h3>کد QR صفحه DanizTori</h3>
-            <p>برای مشاهده این صفحه روی گوشی، این کد را اسکن کنید:</p>
-            <div class="qr-container">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/masoumasoud" alt="QR Code" id="qrCodeImage">
+    <!-- Hidden Game Modal -->
+    <div class="game-overlay" id="gameModal">
+        <div class="game-container">
+            <div class="game-header">
+                <h2>RIDE OUT</h2>
+                <button class="close-game-btn" id="closeGameBtn">&times;</button>
             </div>
-            <button class="btn btn-primary" id="copyModalLinkBtn">
-                <i class="fa-solid fa-copy"></i> کپی لینک صفحه
-            </button>
+            <div class="game-score">Score: <span id="gameScore">0</span></div>
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+            <div class="game-controls">
+                <p>Press <strong>SPACE</strong> or <strong>TAP</strong> to jump!</p>
+            </div>
+            <div id="gameOverScreen" class="game-over hidden">
+                <h3>CRASHED!</h3>
+                <p>Final Score: <span id="finalScore">0</span></p>
+                <button id="restartBtn" class="restart-btn">RIDE AGAIN</button>
+            </div>
         </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="fa-solid fa-circle-check"></i>
-        <span id="toastMsg">لینک صفحه با موفقیت کپی شد!</span>
     </div>
 
     <!-- App Script -->
