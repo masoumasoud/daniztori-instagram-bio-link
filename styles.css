@@ -356,33 +356,26 @@ body {
     font-size: 1.2rem;
 }
 
-#restartBtn, #playBtn {
-    background: var(--neon-red);
+#restartBtn, #playBtn, .exit-btn {
     color: white;
     border: none;
-    padding: 8px 20px;
+    padding: 8px 15px;
     font-family: var(--font-text);
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
+    margin: 5px;
 }
 
-.exit-game {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    border: 1px solid var(--neon-red);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    z-index: 20;
-    transition: var(--transition);
-}
-.exit-game:hover {
+#restartBtn, #playBtn {
     background: var(--neon-red);
+}
+
+.exit-btn {
+    background: #555;
+}
+.exit-btn:hover {
+    background: #777;
 }
 
 .game-controls-ui {
