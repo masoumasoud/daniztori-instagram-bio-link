@@ -394,6 +394,7 @@ body {
     justify-content: space-around;
     z-index: 20;
     pointer-events: none;
+    direction: ltr;
 }
 .game-controls-ui.show {
     pointer-events: auto;
