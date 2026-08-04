@@ -4,6 +4,54 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- Audio & Haptics Setup ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
+
+    function initAudio() {
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function haptic() {
+        if (navigator.vibrate) {
+            navigator.vibrate(15); // Light 15ms vibration
+        }
+    }
+
+    function playClickSound() {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+    }
+
+    function playRevSound() {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(60, audioCtx.currentTime);
+        osc.frequency.linearRampToValueAtTime(150, audioCtx.currentTime + 0.2);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.3);
+    }
+
+    // Bind common sounds/haptics to buttons
+    document.body.addEventListener('pointerdown', () => initAudio(), { once: true });
+
     // UI Elements
     const rpmPath = document.getElementById('rpmPath');
     const speedValue = document.getElementById('speedValue');
@@ -37,9 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setRPM(0);
 
+    // Mobile optimized touches on links
     switchBtns.forEach(btn => {
+        btn.addEventListener('touchstart', () => {
+            haptic();
+            playClickSound();
+        }, {passive: true});
+
         btn.addEventListener('mouseenter', () => {
             if(isGameActive) return;
+            playRevSound();
             const targetSpeed = btn.getAttribute('data-rpm');
             const targetGear = btn.getAttribute('data-gear');
             
@@ -86,9 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fillRect(this.x, this.y, this.width, this.height);
             // Wheels
             ctx.fillStyle = '#333';
-            ctx.fillRect(this.x + 2, this.y - 5, 16, 8); // Front wheel
-            ctx.fillRect(this.x + 2, this.y + this.height, 16, 8); // Rear wheel
-            // Windshield / Rider
+            ctx.fillRect(this.x + 2, this.y - 5, 16, 8); 
+            ctx.fillRect(this.x + 2, this.y + this.height, 16, 8);
+            // Rider
             ctx.fillStyle = '#00e5ff';
             ctx.fillRect(this.x + 5, this.y + 10, 10, 15);
         },
@@ -108,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.speed = 2 + (score * 0.05);
         }
         draw() {
-            ctx.fillStyle = '#ffb300'; // Yellow/Orange cars or obstacles
+            ctx.fillStyle = '#ffb300'; 
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
         update() {
@@ -120,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = '#222';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        // Road lines
         ctx.strokeStyle = '#555';
         ctx.setLineDash([20, 20]);
         ctx.lineWidth = 4;
@@ -134,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.stroke();
         ctx.setLineDash([]);
         
-        // Score
         ctx.fillStyle = 'white';
         ctx.font = '16px Lalezar';
         ctx.fillText('Score: ' + score, 10, 25);
@@ -158,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             obs.update();
             obs.draw();
 
-            // Collision
             if (
                 bike.x < obs.x + obs.width &&
                 bike.x + bike.width > obs.x &&
@@ -180,6 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function crash() {
+        haptic();
+        if(navigator.vibrate) navigator.vibrate([50, 50, 100]); // Crash vibrate pattern
         isGameOver = true;
         isPlaying = false;
         cancelAnimationFrame(gameLoop);
@@ -189,6 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startGame() {
+        haptic();
+        playClickSound();
         obstacles = [];
         score = 0;
         frames = 0;
@@ -213,12 +269,13 @@ document.addEventListener('DOMContentLoaded', () => {
         gameStartUI.classList.add('show');
         gameOverUI.classList.remove('show');
         gameControlsUI.classList.remove('show');
-        // Clear canvas
         ctx.fillStyle = '#111';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
     
     function closeGameMode() {
+        haptic();
+        playClickSound();
         isGameActive = false;
         isPlaying = false;
         isGameOver = true;
@@ -227,7 +284,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Interactions
-    ignitionKey.addEventListener('click', () => {
+    ignitionKey.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        haptic();
+        playClickSound();
         keyClicks++;
         ignitionKey.classList.add('active');
         setTimeout(() => ignitionKey.classList.remove('active'), 200);
@@ -235,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(clickTimeout);
         
         if (keyClicks >= 3) {
+            playRevSound();
             openGameMode();
             keyClicks = 0;
         } else {
@@ -244,18 +305,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    exitGameBtn.addEventListener('click', closeGameMode);
-    playBtn.addEventListener('click', startGame);
-    restartBtn.addEventListener('click', startGame);
+    exitGameBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); closeGameMode(); });
+    playBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startGame(); });
+    restartBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); startGame(); });
 
-    // Mobile / Screen Button Controls
-    leftBtn.addEventListener('pointerdown', () => moveLeft = true);
-    leftBtn.addEventListener('pointerup', () => moveLeft = false);
-    leftBtn.addEventListener('pointerleave', () => moveLeft = false);
+    // Mobile / Screen Button Controls (Optimized for 0 delay)
+    const handleMoveLeft = (e) => { e.preventDefault(); moveLeft = true; haptic(); playClickSound(); };
+    const handleMoveRight = (e) => { e.preventDefault(); moveRight = true; haptic(); playClickSound(); };
+    const stopMove = (e) => { e.preventDefault(); moveLeft = false; moveRight = false; };
+
+    leftBtn.addEventListener('touchstart', handleMoveLeft, {passive: false});
+    leftBtn.addEventListener('mousedown', handleMoveLeft);
+    leftBtn.addEventListener('touchend', stopMove, {passive: false});
+    leftBtn.addEventListener('mouseup', stopMove);
+    leftBtn.addEventListener('mouseleave', stopMove);
     
-    rightBtn.addEventListener('pointerdown', () => moveRight = true);
-    rightBtn.addEventListener('pointerup', () => moveRight = false);
-    rightBtn.addEventListener('pointerleave', () => moveRight = false);
+    rightBtn.addEventListener('touchstart', handleMoveRight, {passive: false});
+    rightBtn.addEventListener('mousedown', handleMoveRight);
+    rightBtn.addEventListener('touchend', stopMove, {passive: false});
+    rightBtn.addEventListener('mouseup', stopMove);
+    rightBtn.addEventListener('mouseleave', stopMove);
 
     // Keyboard Controls
     window.addEventListener('keydown', (e) => {
