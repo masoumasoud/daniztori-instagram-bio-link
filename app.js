@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         y: canvas.height - 50,
         width: 20,
         height: 40,
-        speed: 4,
+        speed: 5,
         draw() {
             ctx.fillStyle = '#ff1744';
             ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -101,11 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let obstacles = [];
     class Obstacle {
         constructor() {
-            this.width = 30;
+            this.width = 25;
             this.height = 20;
             this.x = Math.random() * (canvas.width - this.width - 20) + 10;
             this.y = -this.height;
-            this.speed = 3 + (score * 0.1);
+            this.speed = 2 + (score * 0.05);
         }
         draw() {
             ctx.fillStyle = '#ffb300'; // Yellow/Orange cars or obstacles
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bike.update();
         bike.draw();
 
-        if (frames % 60 === 0) {
+        if (frames % 90 === 0) {
             obstacles.push(new Obstacle());
         }
 
