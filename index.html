@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanizTori | Biker Life</title>
+    <title>دنیزطوری | موتور سوار</title>
     
-    <!-- Meta SEO & Social Sharing -->
-    <meta name="description" content="DanizTori Biker Blog & Social Links">
+    <!-- Meta SEO -->
+    <meta name="description" content="صفحه رسمی ارتباط با دنیزطوری - بلاگر موتور سوار">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/biker_avatar.png">
@@ -14,7 +14,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&family=Teko:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&family=Lalezar&display=swap" rel="stylesheet">
     
     <!-- FontAwesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -24,103 +24,124 @@
 </head>
 <body>
 
-    <!-- Background texture/pattern (minimal) -->
-    <div class="tire-track-bg"></div>
+    <!-- Ambient Engine Sound (Optional, requires user interaction to play) -->
+    <audio id="engineSound" src="https://actions.google.com/sounds/v1/transportation/motorcycle_start_and_idle.ogg" preload="auto"></audio>
+    <audio id="revSound" src="https://actions.google.com/sounds/v1/transportation/motorcycle_pass_by.ogg" preload="auto"></audio>
 
-    <main class="container">
+    <div class="carbon-bg"></div>
+    <div class="vignette"></div>
+
+    <main class="dashboard-container">
         
-        <!-- Profile Header Section -->
+        <!-- Header Profile -->
         <header class="profile-header">
-            <div class="avatar-wrapper" id="avatarWrapper">
-                <div class="rpm-ring"></div>
-                <img src="assets/biker_avatar.png" alt="DanizTori Avatar" class="avatar-img" id="avatarImg">
-                <button class="ignition-btn" id="ignitionBtn" title="Start Engine" aria-label="Start Engine">
-                    <i class="fa-solid fa-power-off"></i>
-                </button>
-            </div>
-            
-            <h1 class="profile-title">
-                DanizTori <span class="accent-dot">.</span>
-            </h1>
-            
-            <p class="profile-tagline">RIDE <span class="separator">|</span> LIVE <span class="separator">|</span> CREATE</p>
-            <p class="profile-bio">
-                Life on two wheels. 🏍️ Join the ride on my channels.
-            </p>
+            <h1 class="profile-title">دنیزطوری <i class="fa-solid fa-motorcycle accent-icon"></i></h1>
+            <p class="profile-bio">زندگی روی دو چرخ. مرزها رو بشکن و گاز بده!</p>
         </header>
 
-        <!-- Main Links List -->
-        <section class="links-container" id="linksList">
+        <!-- Speedometer Section (Central Hub) -->
+        <section class="speedometer-wrapper">
+            <div class="speedometer-inner">
+                <!-- SVG Speedometer Design -->
+                <svg class="speed-dial" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="gradRed" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#333;stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:#333;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff1744;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Outer Ring -->
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="#222" stroke-width="10"/>
+                    
+                    <!-- Track -->
+                    <path d="M 30,170 A 90,90 0 1,1 170,170" fill="none" stroke="url(#gradRed)" stroke-width="8" stroke-linecap="round"/>
+                    
+                    <!-- RPM Progress (Dynamic) -->
+                    <path id="rpmPath" d="M 30,170 A 90,90 0 1,1 170,170" fill="none" stroke="#ff1744" stroke-width="8" stroke-linecap="round" stroke-dasharray="415" stroke-dashoffset="415"/>
+                    
+                    <!-- Ticks -->
+                    <g class="ticks" stroke="#666" stroke-width="2">
+                        <!-- Ticks generated in JS for precision, or approximated here -->
+                        <line x1="20" y1="160" x2="30" y2="155" />
+                        <line x1="10" y1="100" x2="20" y2="100" />
+                        <line x1="50" y1="25" x2="55" y2="35" />
+                        <line x1="100" y1="10" x2="100" y2="20" />
+                        <line x1="150" y1="25" x2="145" y2="35" />
+                        <line x1="190" y1="100" x2="180" y2="100" />
+                        <line x1="180" y1="160" x2="170" y2="155" stroke="#ff1744" stroke-width="3"/>
+                    </g>
+                </svg>
+
+                <div class="speed-data">
+                    <div class="speed-value" id="speedValue">0</div>
+                    <div class="speed-unit">km/h</div>
+                </div>
+
+                <div class="gear-indicator">
+                    <span id="gearValue">N</span>
+                </div>
+
+                <!-- Ignition Key (Secret Game Button) -->
+                <div class="ignition-key" id="ignitionKey" title="استارت (بازی مخفی)">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+            </div>
+
+            <!-- Game Overlay (Hidden by default, shown inside speedometer area) -->
+            <div class="game-display" id="gameDisplay">
+                <canvas id="gameCanvas" width="300" height="200"></canvas>
+                <div class="game-overlay-ui" id="gameOverUI">
+                    <h3>تصادف کردی!</h3>
+                    <p>امتیاز: <span id="finalScore">0</span></p>
+                    <button id="restartBtn">دوباره</button>
+                </div>
+                <div class="game-start-ui" id="gameStartUI">
+                    <p>برای پرش بزن رو صفحه!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links Section (Switchgears) -->
+        <section class="switchgear-container">
             
-            <a href="https://www.youtube.com/@Daniztori" target="_blank" class="link-card youtube-card">
-                <div class="link-icon">
-                    <i class="fa-brands fa-youtube"></i>
+            <a href="https://www.youtube.com/@Daniztori" target="_blank" class="switch-btn engine-start" data-rpm="120" data-gear="3">
+                <div class="switch-icon"><i class="fa-brands fa-youtube"></i></div>
+                <div class="switch-text">
+                    <span class="title">کانال یوتیوب</span>
+                    <span class="subtitle">ویدیوها و ولاگ‌ها</span>
                 </div>
-                <div class="link-details">
-                    <span class="link-title">YouTube Channel</span>
-                    <span class="link-subtitle">Vlogs, Reviews & Rides</span>
-                </div>
-                <div class="link-action">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </div>
+                <div class="switch-indicator red"></div>
             </a>
 
-            <a href="https://t.me/daniztori" target="_blank" class="link-card telegram-card">
-                <div class="link-icon">
-                    <i class="fa-brands fa-telegram"></i>
+            <a href="https://t.me/daniztori" target="_blank" class="switch-btn high-beam" data-rpm="180" data-gear="5">
+                <div class="switch-icon"><i class="fa-brands fa-telegram"></i></div>
+                <div class="switch-text">
+                    <span class="title">کانال تلگرام</span>
+                    <span class="subtitle">اخبار و مطالب روزانه</span>
                 </div>
-                <div class="link-details">
-                    <span class="link-title">Telegram Channel</span>
-                    <span class="link-subtitle">Daily Updates & Community</span>
-                </div>
-                <div class="link-action">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </div>
+                <div class="switch-indicator blue"></div>
             </a>
 
-            <a href="https://t.me/daniztori?direct" target="_blank" class="link-card contact-card">
-                <div class="link-icon">
-                    <i class="fa-solid fa-envelope"></i>
+            <a href="https://t.me/daniztori?direct" target="_blank" class="switch-btn horn" data-rpm="250" data-gear="6">
+                <div class="switch-icon"><i class="fa-solid fa-comments"></i></div>
+                <div class="switch-text">
+                    <span class="title">ارتباط مستقیم</span>
+                    <span class="subtitle">چت با من در تلگرام</span>
                 </div>
-                <div class="link-details">
-                    <span class="link-title">Direct Contact</span>
-                    <span class="link-subtitle">Business & Inquiries</span>
-                </div>
-                <div class="link-action">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </div>
+                <div class="switch-indicator green"></div>
             </a>
 
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <p class="mechanic-text"><i class="fa-solid fa-wrench"></i> ENGINEERED FOR SPEED</p>
+            <p><i class="fa-solid fa-wrench"></i> طراحی شده برای جاده‌های بی‌پایان</p>
         </footer>
 
     </main>
 
-    <!-- Hidden Game Modal -->
-    <div class="game-overlay" id="gameModal">
-        <div class="game-container">
-            <div class="game-header">
-                <h2>RIDE OUT</h2>
-                <button class="close-game-btn" id="closeGameBtn">&times;</button>
-            </div>
-            <div class="game-score">Score: <span id="gameScore">0</span></div>
-            <canvas id="gameCanvas" width="800" height="400"></canvas>
-            <div class="game-controls">
-                <p>Press <strong>SPACE</strong> or <strong>TAP</strong> to jump!</p>
-            </div>
-            <div id="gameOverScreen" class="game-over hidden">
-                <h3>CRASHED!</h3>
-                <p>Final Score: <span id="finalScore">0</span></p>
-                <button id="restartBtn" class="restart-btn">RIDE AGAIN</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- App Script -->
     <script src="app.js"></script>
 </body>
 </html>
