@@ -407,3 +407,233 @@ body {
 .game-btn:active {
     background: rgba(255, 255, 255, 0.4);
 }
+
+/* ==========================================================================
+   Ads Page Styles
+   ========================================================================== */
+.ads-page-container {
+    max-width: 500px;
+}
+
+.ads-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.ads-category h2 {
+    font-size: 1.3rem;
+    color: var(--neon-red);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--metal-light);
+    padding-bottom: 10px;
+    text-shadow: 0 0 10px var(--neon-red-glow);
+}
+
+.ads-category h2 i {
+    font-size: 1.1rem;
+}
+
+.ad-card {
+    background: linear-gradient(145deg, rgba(34,34,34,0.7), rgba(17,17,17,0.7));
+    border: 1px solid var(--metal-light);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: var(--transition);
+}
+
+.ad-card:hover {
+    border-color: #666;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.premium-card {
+    border-color: rgba(0, 229, 255, 0.4);
+}
+
+.premium-card:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 8px 20px rgba(0, 229, 255, 0.15);
+}
+
+.ad-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 15px;
+}
+
+.ad-card-header h3 {
+    font-size: 1.05rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.ad-price {
+    font-family: var(--font-num);
+    color: #00e676;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    text-shadow: 0 0 8px rgba(0,230,118,0.4);
+    background: rgba(0, 230, 118, 0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.ad-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.ad-note {
+    font-size: 0.8rem;
+    color: #ffb300;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255, 179, 0, 0.3);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.ad-note i {
+    margin-top: 2px;
+}
+
+.info-category .conditions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-category .conditions-list li {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    padding-right: 20px;
+    position: relative;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+.info-category .conditions-list li::before {
+    content: "•";
+    color: var(--neon-blue);
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.info-category strong {
+    color: var(--neon-red);
+}
+
+.date-note {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 20px;
+    text-align: left;
+    font-family: var(--font-num);
+}
+
+.ads-actions {
+    margin-top: 10px;
+}
+
+/* Sticky CTA Button for Ads Page */
+.sticky-cta-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.sticky-cta-btn {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #0088cc, #0077b5);
+    border: 1px solid #33aaff;
+    border-radius: 16px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 20px rgba(0, 136, 204, 0.4), inset 0 2px 5px rgba(255,255,255,0.3);
+    animation: pulse-glow 2s infinite;
+    transition: var(--transition);
+    pointer-events: auto;
+}
+
+.sticky-cta-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 25px rgba(0, 136, 204, 0.6), inset 0 2px 5px rgba(255,255,255,0.4);
+}
+
+.sticky-icon {
+    font-size: 1.8rem;
+    margin-left: 15px;
+    color: #fff;
+    width: 40px;
+    text-align: center;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.sticky-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.sticky-text .title {
+    font-size: 1.15rem;
+    font-weight: 900;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.sticky-text .subtitle {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.85);
+}
+
+.sticky-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.8);
+    animation: blink 1.5s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7), 0 10px 20px rgba(0, 136, 204, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(0, 136, 204, 0), 0 10px 20px rgba(0, 136, 204, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 136, 204, 0), 0 10px 20px rgba(0, 136, 204, 0.4);
+    }
+}
+
+@keyframes blink {
+    from { opacity: 0.4; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.2); }
+}
